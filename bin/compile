@@ -80,21 +80,6 @@ export CPATH="$INCLUDE_PATH"
 export CPPPATH="$INCLUDE_PATH"
 export PKG_CONFIG_PATH="$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/pkgconfig:$BUILD_DIR/.apt/usr/lib/i386-linux-gnu/pkgconfig:$BUILD_DIR/.apt/usr/lib/pkgconfig:$PKG_CONFIG_PATH"
 
-# PATH is relatively obvious, we need to be able to execute 'python'.
-export PATH=/app/.heroku/vendor/bin:/app/.apt/usr/bin:$BUILD_DIR/.heroku/python/bin:$BUILD_DIR/.heroku/vendor/bin:$PATH
-# Tell Python to not buffer it's stdin/stdout.
-export PYTHONUNBUFFERED=1
-# Set the locale to a well-known and expected standard.
-export LANG=en_US.UTF-8
-# `~/.heroku/vendor` is an place where the buildpack may stick pre-build binaries for known
-# C dependencies (e.g. libmemcached on cedar-14). This section configures Python (GCC, more specifically)
-# and pip to automatically include these paths when building binaries.
-export C_INCLUDE_PATH=/app/.apt/usr/include:/app/.heroku/vendor/include:$BUILD_DIR/.heroku/vendor/include:/app/.heroku/python/include:$C_INCLUDE_PATH
-export CPLUS_INCLUDE_PATH=/app/.apt/usr/include:/app/.heroku/vendor/include:$BUILD_DIR/.heroku/vendor/include:/app/.heroku/python/include:$CPLUS_INCLUDE_PATH
-export LIBRARY_PATH=/app/.apt/usr/lib:/app/.heroku/vendor/lib:$BUILD_DIR/.heroku/vendor/lib:/app/.heroku/python/lib:$LIBRARY_PATH
-export LD_LIBRARY_PATH=/app/.apt/usr/lib:/app/.heroku/vendor/lib:$BUILD_DIR/.heroku/vendor/lib:/app/.heroku/python/lib:$LD_LIBRARY_PATH
-export PKG_CONFIG_PATH=/app/.heroku/vendor/lib/pkg-config:$BUILD_DIR/.heroku/vendor/lib/pkg-config:/app/.heroku/python/lib/pkg-config:$PKG_CONFIG_PATH
-
 echo 'Printing path...'
 echo $PATH
 
