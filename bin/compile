@@ -100,6 +100,8 @@ mkdir -p $_INST_
 
 export LD_LIBRARY_PATH=$_INST_/lib/
 
+which yasm
+which nasm
 cd $_SRC_
 git clone --depth=1 --branch=v1.7.0 https://github.com/webmproject/libvpx.git
 ls
