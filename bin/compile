@@ -98,10 +98,8 @@ rm -Rf $_INST_
 mkdir -p $_SRC_
 mkdir -p $_INST_
 
-export LD_LIBRARY_PATH=$_INST_/lib/
+export LD_LIBRARY_PATH=$_INST_/lib/:$LD_LIBRARY_PATH
 
-which yasm
-which nasm
 cd $_SRC_
 git clone --depth=1 --branch=v1.7.0 https://github.com/webmproject/libvpx.git
 ls
