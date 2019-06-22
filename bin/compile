@@ -104,12 +104,12 @@ cd $_SRC_
 git clone --depth=1 --branch=v1.7.0 https://github.com/webmproject/libvpx.git
 ls
 cd libvpx
-configure --help
 export CFLAGS=" $CF2 $CF3 "
 export CXXFLAGS=" $CF2 $CF3 "
 ./configure --prefix=$_INST_ --disable-examples \
   --disable-unit-tests --enable-shared \
   --size-limit=16384x16384 \
+  --libc=/usr/bin/gcc \
   --enable-onthefly-bitpacking \
   --enable-error-concealment \
   --enable-runtime-cpu-detect \
