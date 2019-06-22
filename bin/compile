@@ -109,6 +109,7 @@ export CXXFLAGS=" $CF2 $CF3 "
 ./configure --prefix=$_INST_ --disable-examples \
   --disable-unit-tests --enable-shared \
   --size-limit=16384x16384 \
+  --CC=/usr/bin/gcc \
   --enable-onthefly-bitpacking \
   --enable-error-concealment \
   --enable-runtime-cpu-detect \
