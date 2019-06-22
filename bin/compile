@@ -83,6 +83,46 @@ export PKG_CONFIG_PATH="$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/pkgconfig:$BUIL
 echo 'Printing path...'
 echo $PATH
 
+export _SRC_=$_HOME_/src/
+export _INST_=$_HOME_/inst/
+
+export CF2=" -O3 -g -marm -march=armv8-a+crc -mtune=cortex-a53 -mfpu=neon-fp-armv8 \
+ -mfloat-abi=hard -ftree-vectorize "
+export CF3=" -funsafe-math-optimizations "
+export VV1=" VERBOSE=1 V=1 "
+
+
+rm -Rf $_SRC_
+rm -Rf $_INST_
+
+mkdir -p $_SRC_
+mkdir -p $_INST_
+
+export LD_LIBRARY_PATH=$_INST_/lib/
+
+cd $_SRC_
+git clone --depth=1 --branch=v1.7.0 https://github.com/webmproject/libvpx.git
+cd libvpx
+make clean
+export CFLAGS=" $CF2 $CF3 "
+export CXXFLAGS=" $CF2 $CF3 "
+./configure --prefix=$_INST_ --disable-examples \
+  --disable-unit-tests --enable-shared \
+  --size-limit=16384x16384 \
+  --enable-onthefly-bitpacking \
+  --enable-error-concealment \
+  --enable-runtime-cpu-detect \
+  --enable-multi-res-encoding \
+  --enable-postproc \
+  --enable-vp9-postproc \
+  --enable-temporal-denoising \
+  --enable-vp9-temporal-denoising
+
+#  --enable-better-hw-compatibility \
+
+make -j 4
+make install
+
 #give environment to later buildpacks
 export | grep -E -e ' (PATH|LD_LIBRARY_PATH|LIBRARY_PATH|INCLUDE_PATH|CPATH|CPPPATH|PKG_CONFIG_PATH)='  > "$LP_DIR/export"
 
