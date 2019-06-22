@@ -104,7 +104,6 @@ cd $_SRC_
 git clone --depth=1 --branch=v1.7.0 https://github.com/webmproject/libvpx.git
 ls
 cd libvpx
-make clean
 export CFLAGS=" $CF2 $CF3 "
 export CXXFLAGS=" $CF2 $CF3 "
 ./configure --prefix=$_INST_ --disable-examples \
