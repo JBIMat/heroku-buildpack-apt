@@ -83,8 +83,8 @@ export PKG_CONFIG_PATH="$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/pkgconfig:$BUIL
 echo 'Printing path...'
 echo $PATH
 
-export _SRC_=$_HOME_/src/
-export _INST_=$_HOME_/inst/
+export _SRC_=$BUILD_DIR/.apt/src/
+export _INST_=$BUILD_DIR/.apt/inst/
 
 export CF2=" -O3 -g -marm -march=armv8-a+crc -mtune=cortex-a53 -mfpu=neon-fp-armv8 \
  -mfloat-abi=hard -ftree-vectorize "
