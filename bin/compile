@@ -100,29 +100,7 @@ mkdir -p $_INST_
 
 export LD_LIBRARY_PATH=$_INST_/lib/:$LD_LIBRARY_PATH
 
-cd $_SRC_
-git clone --depth=1 --branch=v1.7.0 https://github.com/webmproject/libvpx.git
-ls
-cd libvpx
-export CFLAGS=" $CF2 $CF3 "
-export CXXFLAGS=" $CF2 $CF3 "
-./configure --prefix=$_INST_ --disable-examples \
-  --disable-unit-tests --enable-shared \
-  --size-limit=16384x16384 \
-  --libc=/usr/bin/gcc \
-  --enable-onthefly-bitpacking \
-  --enable-error-concealment \
-  --enable-runtime-cpu-detect \
-  --enable-multi-res-encoding \
-  --enable-postproc \
-  --enable-vp9-postproc \
-  --enable-temporal-denoising \
-  --enable-vp9-temporal-denoising
 
-#  --enable-better-hw-compatibility \
-
-make -j 4
-make install
 
 #give environment to later buildpacks
 export | grep -E -e ' (PATH|LD_LIBRARY_PATH|LIBRARY_PATH|INCLUDE_PATH|CPATH|CPPPATH|PKG_CONFIG_PATH)='  > "$LP_DIR/export"
